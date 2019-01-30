@@ -1,11 +1,5 @@
 #!/bin/bash
-echo "This assumes that you are doing a green-field install.  If you're not, please exit in the next 15 seconds."
-sleep 15
-echo "Continuing install, this will prompt you for your password if you're not already running as root and you didn't enable passwordless sudo.  Please do not run me as root!"
-if [[ `whoami` == "root" ]]; then
-    echo "You ran me as root! Do not run me as root!"
-    exit 1
-fi
+
 ROOT_SQL_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 CURUSER=$(whoami)
 sudo timedatectl set-timezone Etc/UTC
